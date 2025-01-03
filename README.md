@@ -11,6 +11,14 @@ These plugins also come with support for the easy usage of popular FTC
 libraries. If you wish to see a library added, please open an issue on or PR to
 the Plugins repository.
 
+## Build Issues:
+These builds make use of gradle's jvm toolchain feature. This means that you may
+find that your build stops and tells you that it cannot find a jdk 8, or a jdk 17.
+To fix this, you need to install a jdk of this version (I recommend doing so
+via android studio's jdk installer itself). You don't need to select it as your
+gradle jdk or anything like that, it just needs to be installed, and gradle
+needs to be able to find it.
+
 ## Getting started:
 DO NOT FORK THIS REPOSITORY UNLESS YOU ARE CONTRIBUTING TO IT.
 
@@ -37,14 +45,14 @@ All of these repositories have a plugins block near the top of the
 TeamCode:
 ```gradle.kts
 plugins {
-	id("dev.frozenmilk.teamcode") version "10.1.1-0.0.0"
+	id("dev.frozenmilk.teamcode") version "10.1.1-0.1.3"
 }
 ```
 
 Library:
 ```gradle.kts
 plugins {
-	id("dev.frozenmilk.library") version "10.1.1-0.0.0"
+	id("dev.frozenmilk.android-library") version "10.1.1-0.1.3"
 }
 ```
 
@@ -72,9 +80,6 @@ However `10.1.1-0.0.1` -> `10.1.1-0.1.0` indicates a breaking change. This means
 that a library may have been moved, removed, or modified in some way, and/or existing
 libraries have have their default versions updated (breaking) e.g.: Dairy
 Util from `0.0.0` -> `0.1.0` or `1.0.0`.
-
-Currently your plugin should automatically pull in the newest non-breaking
-versions of things.
 
 So, keep your plugin up to date, and that will keep your SDK up to date, and
 your libraries up to date. We'll make sure to do a good job of informing you
