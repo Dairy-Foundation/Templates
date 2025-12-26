@@ -38,6 +38,122 @@ E.g.: I want to clone a template into a directory called `TeamCode`.
 6. I run `git branch -m master` to rename my branch to master.
 7. I run `git push origin master` to push to the master branch of my new remote.
 
+## The Plugin:
+The plugins used in these templates can be found
+[here](https://github.com/Dairy-Foundation/Plugins)
+
+This is a quick demo of the features, but does not show the more complex
+scenarios.
+
+This also shows all the non-sdk libraries that are currently available.
+```kt
+// the ftc block contains the ftc libraries dsl
+ftc {
+    // calling the kotlin function will add kotlin to your project
+    kotlin()
+
+    // the sdk block contains dependencies related to the sdk
+    sdk {
+        // just like when adding a dependency normally,
+        // we use the configuration
+
+        // this adds RobotCore to implementation
+        implementation(RobotCore)
+        // we can also specify a version
+        implementation(FtcCommon("11.0.0"))
+
+        // the sdk block specifically has a shared version
+        version = "11.0.0"
+        // once you change it,
+        // all un-specified versions for sdk dependencies will have this version
+        // note that changing it won't affect previous actions
+
+        // the sdk block also has a TeamCode function
+        TeamCode()
+        // or:
+        TeamCode("11.0.0")
+        // these functions are recommended for use in team code modules,
+        // as they provide all the dependencies for you, rather than manually
+        // specifying it
+    }
+
+    // the acmerobotics blocks contains roadrunner and dashboard
+    acmerobotics {
+        // the acmerobotics block also contains a road runner block:
+        roadrunner {
+            implementation(core)
+            implementation(ftc)
+            implementation(actions)
+        }
+        // and dashboard
+        implementation(dashboard)
+    }
+
+    // the dairy block contains dairy dependencies
+    dairy {
+        // this adds the sloth library to the runtime,
+        // you'll still need to set up the plugin
+        implementation(Sloth)
+        // slothboard is also available
+        // sloth is mutually exclusive with dashboard,
+        // and gradle will crash with an error telling you
+        // why if you have them both
+        implementation(slothboard)
+
+        // you can also get latest Mercurial 2.0 beta
+        implementation(MercurialFTC)
+    }
+
+    // the next block contains next ftc dependencies
+    next {
+        // core libraries
+        implementation(ftc)
+        implementation(bindings)
+        implementation(control)
+
+        // extensions
+        implementation(pedro)
+        implementation(roadrunner)
+        implementation(fateweaver)
+    }
+
+    // the pedro block contains pedro pathing dependencies
+    pedro {
+        implementation(core)
+        implementation(ftc)
+        implementation(telemetry)
+    }
+
+    // the ftcontrol block contains panels dependencies
+    ftcontrol {
+        // base library
+        implementation(panels)
+
+        // plugins
+        implementation(battery)
+        implementation(camerastream)
+        implementation(capture)
+        implementation(configurables)
+        implementation(field)
+        implementation(gamepad)
+        implementation(graph)
+        implementation(lights)
+        implementation(limelightproxy)
+        implementation(opmodecontrol)
+        implementation(pinger)
+        implementation(telemetry)
+        implementation(themes)
+        implementation(utils)
+
+        // or fullpanels preset
+        implementation(fullpanels)
+    }
+}
+```
+
+If you're interested in adding more libraries, or maintain one of these
+libraries and want to make a PR to the Plugins repository, please do.
+
 ## Updating:
 All of these repositories have a plugins block near the top of the
 `build.gradle.kts` file:
@@ -45,14 +161,14 @@ All of these repositories have a plugins block near the top of the
 TeamCode:
 ```gradle.kts
 plugins {
-	id("dev.frozenmilk.teamcode") version "10.1.1-0.1.3"
+	id("dev.frozenmilk.teamcode") version "11.0.0-1.0.0"
 }
 ```
 
 Library:
 ```gradle.kts
 plugins {
-	id("dev.frozenmilk.android-library") version "10.1.1-0.1.3"
+	id("dev.frozenmilk.android-library") version "11.0.0-1.0.0"
 }
 ```
 
@@ -96,9 +212,11 @@ library that you want to use.
 Basic TeamCode module.
 ## `teamcode-kotlin`
 Basic TeamCode module with Kotlin support.
-
-# Libraries
-At the moment the `ftc` gradle block only supports the SDK and Kotlin.
-
-More documentation on how to use the plugin and configure builds will be added
-both here and on the Plugins repository.
+## `teamcode-sloth`
+Basic TeamCode module with Sloth preinstalled, including the gradle tasks.
+## `android-library`
+Basic template for creating an FTC android library that will be published to the
+Dairy maven repository.
+## `jvm-library`
+Basic template for creating an FTC non-android jvm library that will be
+published to the Dairy maven repository.
