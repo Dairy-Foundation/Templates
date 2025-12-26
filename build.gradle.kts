@@ -2,6 +2,7 @@ plugins {
     id("dev.frozenmilk.android-library") version "11.0.0-1.0.0"
     id("dev.frozenmilk.publish") version "0.0.5"
     id("dev.frozenmilk.doc") version "0.0.5"
+    id("dev.frozenmilk.build-meta-data") version "0.0.2"
 }
 
 // TODO: modify
@@ -19,6 +20,19 @@ ftc {
 
         compileOnly(RobotCore)
     }
+}
+
+meta {
+    // TODO: modify
+    packagePath = "com.example"
+    // TODO: modify
+    name = "Library"
+    // TODO: modify
+    registerField("name", "String", "\"com.example.Library\"")
+    registerField("clean", "Boolean") { "${dairyPublishing.clean}" }
+    registerField("gitRef", "String") { "\"${dairyPublishing.gitRef}\"" }
+    registerField("snapshot", "Boolean") { "${dairyPublishing.snapshot}" }
+    registerField("version", "String") { "\"${dairyPublishing.version}\"" }
 }
 
 publishing {
