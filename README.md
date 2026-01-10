@@ -161,14 +161,14 @@ All of these repositories have a plugins block near the top of the
 TeamCode:
 ```gradle.kts
 plugins {
-	id("dev.frozenmilk.teamcode") version "11.0.0-1.0.0"
+	id("dev.frozenmilk.teamcode") version "11.0.0-1.1.0"
 }
 ```
 
 Library:
 ```gradle.kts
 plugins {
-	id("dev.frozenmilk.android-library") version "11.0.0-1.0.0"
+	id("dev.frozenmilk.android-library") version "11.0.0-1.1.0"
 }
 ```
 
