@@ -33,7 +33,7 @@ E.g.: I want to clone a template into a directory called `TeamCode`.
 1. I want the `teamcode-kotlin` branch.
 2. I run `git clone --single-branch -b teamcode-kotlin git@github.com:Dairy-Foundation/Templates.git TeamCode` (I like to use ssh).
 3. I run `cd TeamCode` to move into the repo.
-4. I run `git remote --set-url origin git@github.com:Froze-N-Milk/TeamCode.git` to
+4. I run `git remote set-url origin git@github.com:Froze-N-Milk/TeamCode.git` to
    use my personal `TeamCode` repository.
 6. I run `git branch -m master` to rename my branch to master.
 7. I run `git push origin master` to push to the master branch of my new remote.
