@@ -148,6 +148,27 @@ ftc {
         // or fullpanels preset
         implementation(fullpanels)
     }
+
+	// the solvers block contains solverslib dependencies
+	solvers {
+		// core solverslib
+		implementation(core)
+
+		// pedroPathing commands
+		implementation(pedroPathing)
+	}
+
+	// the fateWeaver block contains fate weaver dependencies
+	fateWeaver {
+		implementation(core)
+		implementation(ftc)
+	}
+
+	// the psiLynx block contains psi lynx dependnecies, currently just psi kit
+	psiLynx {
+		implementation(core)
+		implementation(ftc)
+	}
 }
 ```
 
